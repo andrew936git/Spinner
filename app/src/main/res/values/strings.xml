@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Spinner</string>
+    <string name="editTextNameET">Имя</string>
+    <string name="editTextSurname">Фамилия</string>
+    <string name="exit_menu_title">Выход</string>
+    <string name="saveButtonText">Сохранить</string>
+    <string name="ageTextView">Возраст</string>
+    <string name="menu_spinner_title">Сортировка</string>
+    <string-array name="post">
+        <item>"Мастер"</item>
+        <item>"Механик"</item>
+        <item>"Инженер по гарантии"</item>
+        <item>"Продавец"</item>
+        <item>"Администратор"</item>
+        <item>"Системный администратор"</item>
+    </string-array>
+</resources>
