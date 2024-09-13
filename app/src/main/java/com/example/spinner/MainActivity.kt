@@ -66,9 +66,9 @@ class MainActivity : AppCompatActivity() {
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerSP.adapter = adapterSpinner
 
-        val toolbarAdapter = ArrayAdapter<String>(this@MainActivity,
+        val toolbarAdapter = ArrayAdapter(this@MainActivity,
             android.R.layout.simple_spinner_item,
-            R.array.post)
+            resources.getStringArray(R.array.post))
         toolbarAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         toolbarSpinner.adapter = toolbarAdapter
 
@@ -98,11 +98,22 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     val item = parent?.getItemAtPosition(position) as String
                     sortText = item
+                    if (sortText == "Сброс") {
+                        listViewLV.adapter = listAdapter
+                    } else {
+                        val list = mutableListOf<Person>()
+                        for (i in personList){
+                            if (i.post == sortText) list.add(i)
+                        }
+                        val adapterSort = ListAdapter(this@MainActivity, list)
+                        listViewLV.adapter = adapterSort
+                    }
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                 }
             }
+
         spinnerSP.onItemSelectedListener = itemSelectedListener
         toolbarSpinner.onItemSelectedListener = itemSelectedListenerToolbar
 
@@ -137,34 +148,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
+        when (item.itemId) {
             R.id.exit_menu -> {
                 finishAffinity()
                 finish()
             }
-            R.id.spinnerSP -> {
-                val adapterSpinner = ArrayAdapter(this, android.R.layout.simple_spinner_item, role)
-                adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinnerSP.adapter = adapterSpinner
-                val itemSelectedListener: AdapterView.OnItemSelectedListener =
-                    object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(
-                            parent: AdapterView<*>?,
-                            view: View?,
-                            position: Int,
-                            id: Long
-                        ) {
-                            val i = parent?.getItemAtPosition(position) as String
-                            sortText = i
-                        }
-
-                        override fun onNothingSelected(parent: AdapterView<*>?) {
-                        }
-                    }
-                spinnerSP.onItemSelectedListener = itemSelectedListener
-            }
         }
-        return super.onOptionsItemSelected(item)
+            return super.onOptionsItemSelected(item)
     }
 
 }

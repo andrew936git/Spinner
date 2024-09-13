@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="post">
+        <item>"Мастер"</item>
+        <item>"Механик"</item>
+        <item>"Инженер по гарантии"</item>
+        <item>"Продавец"</item>
+        <item>"Администратор"</item>
+        <item>"Системный администратор"</item>
+        <item>"Сброс"</item>
+    </string-array>
+
+</resources>
